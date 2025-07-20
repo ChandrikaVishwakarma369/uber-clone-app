@@ -219,3 +219,98 @@ Content-Type: application/json
 - **Validation Middleware:** `express-validator`
 - **Database:** MongoDB (via Mongoose)
 - **Authentication:** JSON Web Token (JWT)
+
+
+### 3. `/users/profile`
+
+#### Method: `GET`
+
+#### Description:
+This endpoint is used to retrieve the profile of the currently authenticated user.
+
+---
+
+#### Headers:
+| Header            | Value            | Required | Description                     |
+|--------------------|------------------|----------|---------------------------------|
+| `Authorization`   | `Bearer <TOKEN>` | Yes      | The JWT token of the user.      |
+
+---
+
+#### Response:
+
+##### Success Response:
+- **Status Code:** `200 OK`
+- **Body:**
+  ```json
+  {
+    "_id": "<USER_ID>",
+    "fullname": {
+      "firstname": "<FIRSTNAME>",
+      "lastname": "<LASTNAME>"
+    },
+    "email": "<EMAIL>"
+  }
+  ```
+
+##### Error Responses:
+1. **Unauthorized:**
+   - **Status Code:** `401 Unauthorized`
+   - **Body:**
+     ```json
+     {
+       "message": "Unauthorized"
+     }
+     ```
+
+---
+
+### 4. `/users/logout`
+
+#### Method: `GET`
+
+#### Description:
+This endpoint is used to log out the currently authenticated user. It clears the user's authentication token and blacklists the token.
+
+---
+
+#### Headers:
+| Header            | Value            | Required | Description                     |
+|--------------------|------------------|----------|---------------------------------|
+| `Authorization`   | `Bearer <TOKEN>` | Yes      | The JWT token of the user.      |
+
+---
+
+#### Response:
+
+##### Success Response:
+- **Status Code:** `200 OK`
+- **Body:**
+  ```json
+  {
+    "message": "logged out"
+  }
+  ```
+
+##### Error Responses:
+1. **Unauthorized:**
+   - **Status Code:** `401 Unauthorized`
+   - **Body:**
+     ```json
+     {
+       "message": "Unauthorized"
+     }
+     ```
+
+---
+
+### Notes:
+- The `/users/profile` and `/users/logout` endpoints require the user to be authenticated.
+- Ensure the `Authorization` header contains a valid JWT token.
+
+---
+
+### Dependencies:
+- **Validation Middleware:** `express-validator`
+- **Database:** MongoDB (via Mongoose)
+- **Authentication:** JSON Web Token (JWT)
