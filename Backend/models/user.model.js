@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt =  require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+
 const userSchema = new mongoose.Schema({
     fullname : {
         firstname:{
@@ -44,4 +45,4 @@ userSchema.statics.hashPassword = async function (password) {
 
 const userModel = mongoose.model('User', userSchema);
 
-module.exports = userModel;
+module.exports = userModel;                                   
